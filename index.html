@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>PANGLIMA Downloader — Download Video TikTok Tanpa Watermark, HD & MP3</title>
+  <meta name="title" content="PANGLIMA Downloader — Download Video TikTok Tanpa Watermark, HD & MP3" />
+  <meta name="description" content="PANGLIMA Downloader adalah alat unduh video TikTok tercepat: tanpa watermark, kualitas HD, dan ekstrak audio MP3. Gratis, cepat, dan aman langsung dari browser." />
+  <meta name="keywords" content="download tiktok, tiktok downloader, tiktok no watermark, download video tiktok, download mp3 tiktok, panglima downloader" />
+  <meta name="author" content="PANGLIMA Downloader" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PANGLIMA Downloader — Download Video TikTok Tanpa Watermark" />
+  <meta property="og:description" content="Unduh video TikTok tanpa watermark, kualitas HD, dan audio MP3 dalam hitungan detik." />
+  <meta property="og:image" content="/icons/icon-512.png" />
+  <meta property="og:url" content="/" />
+  <meta property="og:site_name" content="PANGLIMA Downloader" />
+  <meta property="og:locale" content="id_ID" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PANGLIMA Downloader — Download Video TikTok Tanpa Watermark" />
+  <meta name="twitter:description" content="Unduh video TikTok tanpa watermark, kualitas HD, dan audio MP3 dalam hitungan detik." />
+  <meta name="twitter:image" content="/icons/icon-512.png" />
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#05070d" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PANGLIMA" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PANGLIMA Downloader",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "description": "Alat unduh video TikTok tanpa watermark, kualitas HD, dan ekstrak audio MP3.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "IDR"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Particle background (DOM-based, tanpa <canvas>) -->
+  <div class="particle-field" id="particleField" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+      <a href="/" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true">
+            <polygon points="24,2 44,14 44,34 24,46 4,34 4,14" fill="none" stroke="url(#brandGrad)" stroke-width="2.5"/>
+            <path d="M24 10 L34 16 V32 L24 38 L14 32 V16 Z" fill="none" stroke="url(#brandGrad)" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="24" cy="24" r="4.5" fill="url(#brandGrad)"/>
+            <defs>
+              <linearGradient id="brandGrad" x1="0" y1="0" x2="48" y2="48">
+                <stop offset="0" stop-color="#2ee6ff"/>
+                <stop offset="1" stop-color="#f2c14e"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">PANGLIMA</span>
+          <span class="brand-subtitle">DOWNLOADER</span>
+        </span>
+      </a>
+
+      <nav class="header-actions">
+        <button id="historyToggle" class="icon-btn" type="button" aria-label="Riwayat unduhan" title="Riwayat">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
+        </button>
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Ganti mode gelap/terang" title="Dark / Light Mode">
+          <svg id="themeIconMoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <main class="hero" id="mainContent">
+      <p class="eyebrow">Fast &middot; No Watermark &middot; HD &middot; MP3</p>
+      <h1 class="hero-title">
+        Panglima Unduhan Video <span class="accent-text">TikTok</span> Anda
+      </h1>
+      <p class="hero-subtitle">
+        Tempel tautan video TikTok, biarkan PANGLIMA menganalisis, lalu unduh tanpa watermark,
+        kualitas HD, atau ekstrak audio MP3 — semua dari server, API Key aman tersimpan.
+      </p>
+
+      <form id="analyzeForm" class="analyze-card" autocomplete="off">
+        <div class="input-frame">
+          <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.5-1.5"/></svg>
+          <input
+            type="url"
+            id="tiktokUrl"
+            name="tiktokUrl"
+            placeholder="Tempel link video TikTok di sini… (https://www.tiktok.com/@user/video/...)"
+            inputmode="url"
+            required
+          />
+          <button type="button" id="pasteBtn" class="ghost-btn" title="Tempel dari clipboard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="4" width="10" height="4" rx="1"/><path d="M7 8H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1"/></svg>
+            <span>Paste</span>
+          </button>
+        </div>
+        <button type="submit" id="analyzeBtn" class="primary-btn">
+          <span class="btn-label">Analisis Video</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </button>
+      </form>
+
+      <p class="hint-text" id="formHint" role="alert" aria-live="polite"></p>
+
+      <!-- Loading state -->
+      <div class="loading-panel" id="loadingPanel" hidden>
+        <div class="spinner"></div>
+        <p id="loadingText">Menganalisis video…</p>
+      </div>
+
+      <!-- ===================== RESULT ===================== -->
+      <section class="result-card" id="resultCard" hidden aria-live="polite">
+        <div class="result-media">
+          <div class="hud-frame">
+            <img id="resultThumb" src="" alt="Thumbnail video TikTok" loading="lazy" />
+            <span class="hud-corner tl"></span>
+            <span class="hud-corner tr"></span>
+            <span class="hud-corner bl"></span>
+            <span class="hud-corner br"></span>
+            <span class="duration-chip" id="resultDuration">00:00</span>
+          </div>
+        </div>
+
+        <div class="result-body">
+          <div class="author-row">
+            <img id="authorAvatar" class="author-avatar" src="" alt="" loading="lazy" />
+            <div>
+              <p class="author-name" id="authorNickname">—</p>
+              <p class="author-username" id="authorUsername">@—</p>
+            </div>
+          </div>
+
+          <p class="video-caption" id="videoCaption">—</p>
+
+          <ul class="stats-row" id="statsRow">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="statLike">0</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span id="statComment">0</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-3.9M8.6 13.5l6.8 3.9"/></svg><span id="statShare">0</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg><span id="statView">0</span></li>
+          </ul>
+
+          <div class="link-copy-row">
+            <input type="text" id="videoLinkField" readonly />
+            <button type="button" id="copyLinkBtn" class="ghost-btn small">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Salin Link</span>
+            </button>
+          </div>
+
+          <div class="download-grid">
+            <button type="button" class="download-btn nowm" data-type="video" data-quality="noWatermark">
+              <span class="dl-title">Tanpa Watermark</span>
+              <span class="dl-sub">MP4 &middot; Kualitas Standar</span>
+            </button>
+            <button type="button" class="download-btn hd" data-type="video" data-quality="hd">
+              <span class="dl-title">HD</span>
+              <span class="dl-sub">MP4 &middot; Bitrate Tertinggi</span>
+            </button>
+            <button type="button" class="download-btn wm" data-type="video" data-quality="watermark">
+              <span class="dl-title">Dengan Watermark</span>
+              <span class="dl-sub">MP4 &middot; Sumber Asli</span>
+            </button>
+            <button type="button" class="download-btn mp3" data-type="audio" data-quality="audio">
+              <span class="dl-title">Audio MP3</span>
+              <span class="dl-sub">Suara / Musik</span>
+            </button>
+          </div>
+
+          <!-- Download progress -->
+          <div class="progress-panel" id="progressPanel" hidden>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="progressLabel">Mengunduh… 0%</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== FEATURES ===================== -->
+      <section class="features" aria-label="Fitur PANGLIMA Downloader">
+        <div class="feature-card">
+          <span class="feature-index">01</span>
+          <h3>Tanpa Watermark</h3>
+          <p>Unduh video asli tanpa logo TikTok yang mengganggu tampilan kontenmu.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-index">02</span>
+          <h3>Kualitas HD</h3>
+          <p>Ambil varian bitrate tertinggi yang tersedia langsung dari server TikTok.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-index">03</span>
+          <h3>Ekstrak MP3</h3>
+          <p>Ambil audio/musik dari video favoritmu dalam format MP3 siap putar.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-index">04</span>
+          <h3>API Key Aman</h3>
+          <p>Seluruh proses berjalan di server — kunci API tidak pernah tersentuh browser.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== HISTORY DRAWER ===================== -->
+    <aside class="history-drawer" id="historyDrawer" aria-label="Riwayat unduhan">
+      <div class="drawer-header">
+        <h2>Riwayat</h2>
+        <button type="button" id="closeHistory" class="icon-btn" aria-label="Tutup riwayat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <ul class="history-list" id="historyList">
+        <li class="history-empty">Belum ada riwayat unduhan.</li>
+      </ul>
+      <button type="button" id="clearHistory" class="ghost-btn small full-width">Hapus Semua Riwayat</button>
+    </aside>
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> PANGLIMA Downloader. Dibuat untuk penggunaan pribadi & edukasi. Bukan afiliasi resmi TikTok.</p>
+    </footer>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
