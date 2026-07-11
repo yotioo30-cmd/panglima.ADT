@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffd700;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.3" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Shield Background -->
+  <path d="M100 10 L185 45 L185 95 C185 145 155 180 100 195 C45 180 15 145 15 95 L15 45 Z" 
+        fill="rgba(10,10,10,0.9)" 
+        stroke="url(#shieldGrad)" 
+        stroke-width="4"
+        filter="url(#glow)"/>
+  
+  <!-- Inner Shield -->
+  <path d="M100 25 L175 55 L175 95 C175 138 150 170 100 183 C50 170 25 138 25 95 L25 55 Z" 
+        fill="none" 
+        stroke="url(#shieldGrad)" 
+        stroke-width="2" 
+        opacity="0.5"/>
+  
+  <!-- Letter P -->
+  <text x="100" y="140" 
+        font-family="Arial, sans-serif" 
+        font-size="90" 
+        font-weight="900"
+        text-anchor="middle" 
+        fill="url(#shieldGrad)"
+        filter="url(#glow)">P</text>
+  
+  <!-- Decorative Lines -->
+  <line x1="100" y1="10" x2="100" y2="25" stroke="url(#shieldGrad)" stroke-width="2"/>
+  <line x1="100" y1="183" x2="100" y2="195" stroke="url(#shieldGrad)" stroke-width="2"/>
+  
+  <!-- Bottom Decoration -->
+  <circle cx="100" cy="195" r="4" fill="url(#shieldGrad)" opacity="0.6"/>
+  <circle cx="70" cy="190" r="3" fill="url(#shieldGrad)" opacity="0.3"/>
+  <circle cx="130" cy="190" r="3" fill="url(#shieldGrad)" opacity="0.3"/>
+</svg>
