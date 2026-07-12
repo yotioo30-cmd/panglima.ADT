@@ -158,7 +158,9 @@ pasteBtn.addEventListener('click', async () => {
   }
 });
 
-// ===== Analyze =====
+// ============================================
+// 🔧 FIX: HANDLE ANALYZE DENGAN VALIDASI JSON
+// ============================================
 analyzeBtn.addEventListener('click', handleAnalyze);
 videoUrlInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') handleAnalyze();
@@ -195,7 +197,35 @@ async function handleAnalyze() {
       body: JSON.stringify({ url })
     });
     
-    const data = await response.json();
+    // ============================================
+    // 🔧 FIX: Cek response sebelum parse JSON
+    // ============================================
+    const contentType = response.headers.get('content-type');
+    
+    // Jika response bukan JSON (kemungkinan HTML error)
+    if (!contentType || !contentType.includes('application/json')) {
+      const text = await response.text();
+      console.error('Response bukan JSON:', text.substring(0, 200));
+      
+      // Cek apakah HTML error dari TikTok
+      if (text.includes('The page') || text.includes('<!DOCTYPE') || text.includes('HTML')) {
+        throw new Error('Server tidak dapat mengakses video. Coba URL lain atau coba lagi nanti.');
+      }
+      
+      throw new Error('Error server: ' + text.substring(0, 100));
+    }
+    
+    // ============================================
+    // 🔧 FIX: Parse JSON dengan aman
+    // ============================================
+    let data;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      const text = await response.text();
+      console.error('Gagal parse JSON:', text.substring(0, 200));
+      throw new Error('Response tidak valid dari server');
+    }
     
     if (!response.ok) {
       throw new Error(data.error || 'Gagal menganalisis video');
@@ -207,12 +237,27 @@ async function handleAnalyze() {
       addToHistory(data.data, url);
       showToast('Video berhasil dianalisis! ✅', 'success');
     } else {
-      throw new Error(data.error || 'Gagal mendapatkan data');
+      throw new Error(data.error || 'Gagal mendapatkan data video');
     }
     
   } catch (error) {
-    showToast('Error: ' + error.message, 'error');
+    // ============================================
+    // 🔧 FIX: Tampilkan error yang lebih jelas
+    // ============================================
+    let errorMessage = error.message;
+    
+    // Cek berbagai jenis error
+    if (errorMessage.includes('Unexpected token')) {
+      errorMessage = 'Server error: Response tidak valid. Coba lagi nanti.';
+    } else if (errorMessage.includes('Failed to fetch')) {
+      errorMessage = 'Koneksi gagal. Periksa internet Anda.';
+    } else if (errorMessage.includes('NetworkError')) {
+      errorMessage = 'Error network. Coba lagi.';
+    }
+    
+    showToast('❌ ' + errorMessage, 'error');
     console.error('Analyze error:', error);
+    
   } finally {
     completeProgress();
     isAnalyzing = false;
@@ -224,36 +269,35 @@ async function handleAnalyze() {
 // ===== Display Result =====
 function displayResult(data) {
   resultSection.style.display = 'block';
-  thumbnail.src = data.thumbnail || '/placeholder.jpg';
+  thumbnail.src = data.thumbnail || data.cover || '/placeholder.jpg';
   videoTitle.textContent = data.title || 'Video TikTok';
-  username.textContent = '@' + (data.username || 'username');
+  username.textContent = '@' + (data.author || data.username || 'username');
   duration.textContent = '⏱️ ' + (data.duration || '00:00');
-  videoLinkInput.value = data.videoUrl || '';
+  videoLinkInput.value = data.video || data.videoUrl || data.play || '';
+  
+  // Set download buttons
+  if (data.video || data.videoUrl || data.play) {
+    downloadVideoBtn.onclick = () => {
+      window.open(data.video || data.videoUrl || data.play, '_blank');
+      showToast('Mengunduh video... 📥', 'success');
+    };
+  }
+  
+  if (data.audio || data.music) {
+    downloadAudioBtn.style.display = 'inline-block';
+    downloadAudioBtn.onclick = () => {
+      window.open(data.audio || data.music, '_blank');
+      showToast('Mengunduh audio... 🎵', 'success');
+    };
+  } else {
+    downloadAudioBtn.style.display = 'none';
+  }
   
   // Scroll to result
   setTimeout(() => {
     resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 200);
 }
-
-// ===== Download =====
-downloadVideoBtn.addEventListener('click', () => {
-  if (!currentData || !currentData.videoUrl) {
-    showToast('Video tidak tersedia', 'error');
-    return;
-  }
-  window.open(currentData.videoUrl, '_blank');
-  showToast('Mengunduh video... 📥', 'success');
-});
-
-downloadAudioBtn.addEventListener('click', () => {
-  if (!currentData || !currentData.audioUrl) {
-    showToast('Audio tidak tersedia', 'error');
-    return;
-  }
-  window.open(currentData.audioUrl, '_blank');
-  showToast('Mengunduh audio... 🎵', 'success');
-});
 
 // ===== Copy Link =====
 copyLinkBtn.addEventListener('click', async () => {
@@ -279,8 +323,8 @@ function addToHistory(data, url) {
   const entry = {
     id: Date.now(),
     title: data.title || 'Video TikTok',
-    username: data.username || 'user',
-    thumbnail: data.thumbnail || '',
+    username: data.author || data.username || 'user',
+    thumbnail: data.thumbnail || data.cover || '',
     url: url,
     type: 'video',
     date: new Date().toISOString()
@@ -355,3 +399,4 @@ if ('serviceWorker' in navigator) {
 // ===== Console Message =====
 console.log('🛡️ PANGLIMA Downloader v1.0');
 console.log('📱 Download TikTok No Watermark');
+console.log('✅ Script sudah diperbaiki!');
