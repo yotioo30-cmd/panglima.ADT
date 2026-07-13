@@ -1,24 +1,16 @@
 {
   "name": "PANGLIMA Downloader",
   "short_name": "PANGLIMA",
-  "description": "Download TikTok No Watermark - Cepat, Aman, Gratis",
+  "description": "Download video TikTok tanpa watermark dengan kualitas HD",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
-  "orientation": "portrait",
+  "background_color": "#0A0A0F",
+  "theme_color": "#6C3CE1",
   "icons": [
     {
-      "src": "/logo.svg",
+      "src": "logo.svg",
       "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/logo.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/svg+xml"
     }
   ]
 }
